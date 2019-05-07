@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maze" default="build">
+
+    <target name="clean">
+      <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+      <mkdir dir="build/classes"/>
+      <javac includeantruntime="false" srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+      <mkdir dir="build/jar"/>
+      <jar destfile="build/jar/MazeRunner.jar" basedir="build/classes">
+        <manifest>
+          <attribute name="Main-Class" value="sparkcog.demo.MazeRunner"/>
+        </manifest>
+      </jar>
+    </target>
+
+    <target name="run">
+      <java jar="build/jar/MazeRunner.jar" fork="true"/>
+    </target>
+
+    <target name="build" depends="clean, compile"/>
+
+    <target name="all" depends="clean, compile, jar, run"/>
+
+</project>
